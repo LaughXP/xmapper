@@ -26,7 +26,7 @@ public interface BaseMapper<T> {
     int insertSelective(T record);
 
     /**
-     * 批量插入数据
+     * 批量插入数据, NULL值同样插入
      * @param list 数据集合
      */
     @Insert("insert into #table #field")
@@ -34,7 +34,7 @@ public interface BaseMapper<T> {
     void insertBatch(List<T> list);
 
     /**
-     * 查询一个
+     * 查询一个, NULL值不做查询字段
      * @return 账单
      */
     @Select("select #resultMap from #table #field")
@@ -42,7 +42,7 @@ public interface BaseMapper<T> {
     T selectOneSelective(T record);
 
     /**
-     * 查询多个
+     * 查询多个, NULL值不做查询字段
      * @return 账单
      */
     @Select("select #resultMap from #table #field")
@@ -50,10 +50,10 @@ public interface BaseMapper<T> {
     List<T> selectListSelective(T record);
 
     /**
-     * 根据主键更新
+     * 根据主键更新, NULL值不插入
      */
     @Update("update #table #field where id = #{id}")
     @Lang(UpdateLangDriver.class)
-    void updateByIdSelective(T record);
+    int updateByIdSelective(T record);
 
 }

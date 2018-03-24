@@ -1,0 +1,8 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<dataset>
+   <t_user
+	  user_no='123'
+	  user_name='小红'
+	  age='18'
+      />
+</dataset>

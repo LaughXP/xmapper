@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	   xmlns:tx="http://www.springframework.org/schema/tx"
+	   xmlns="http://www.springframework.org/schema/beans"
+	   xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+	http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
+
+	<bean id="master" class="com.alibaba.druid.pool.DruidDataSource" init-method="init" destroy-method="close">
+		<property name="url" value="jdbc:h2:mem:billing_center;MODE=MYSQL"/>
+		<property name="username" value="sa"/>
+		<property name="driverClassName" value="org.h2.Driver" />
+
+		<!-- 配置初始化大小、最小、最大 -->
+		<property name="initialSize" value="3"/>
+		<property name="minIdle" value="3"/>
+		<property name="maxActive" value="20"/>
+
+		<!-- 配置获取连接等待超时的时间 -->
+		<property name="maxWait" value="10000"/>
+		<!-- 配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒 -->
+		<property name="timeBetweenEvictionRunsMillis" value="5000"/>
+		<!-- 配置一个连接在池中最小生存的时间，单位是毫秒 -->
+		<property name="minEvictableIdleTimeMillis" value="300000"/>
+		<property name="maxEvictableIdleTimeMillis" value="3000000"/>
+		<property name="validationQueryTimeout" value="1"/>
+		<property name="testWhileIdle" value="true"/>
+		<property name="testOnBorrow" value="false"/>
+		<property name="testOnReturn" value="false"/>
+		<!-- 监控数据库 -->
+		<property name="proxyFilters">
+			<list>
+				<ref bean="log-filter"/>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="log-filter" class="com.alibaba.druid.filter.logging.Slf4jLogFilter">
+		<property name="resultSetLogEnabled" value="false"/>
+		<property name="connectionLogEnabled" value="false"/>
+		<property name="statementLogEnabled" value="false"/>
+		<property name="statementExecutableSqlLogEnable" value="true"/>
+	</bean>
+
+	<!-- mybatis基础配置 -->
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="master"/>
+		<property name="typeHandlersPackage" value="com.caocao.billing.common.mybatis.type" />
+	</bean>
+
+	<!-- DAO接口所在包名，Spring会自动查找其下的类 -->
+	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+		<property name="basePackage" value="com.gaoyu.xmapper.mapper"/>
+		<property name="sqlSessionFactoryBeanName" value="sqlSessionFactory" />
+		<property name="annotationClass" value="com.gaoyu.xmapper.mybatis.MapperExtend" />
+	</bean>
+
+	<bean id="transactionManager"
+		  class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="master"/>
+	</bean>
+
+	<!-- 启用注解事务 -->
+	<tx:annotation-driven/>
+</beans>
