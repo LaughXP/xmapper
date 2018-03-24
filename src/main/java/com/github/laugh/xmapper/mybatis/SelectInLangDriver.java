@@ -1,4 +1,4 @@
-package com.gaoyu.xmapper.mybatis;
+package com.github.laugh.xmapper.mybatis;
 
 import org.apache.ibatis.session.Configuration;
 

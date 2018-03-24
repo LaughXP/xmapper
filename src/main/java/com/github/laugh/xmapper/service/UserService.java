@@ -1,7 +1,7 @@
-package com.gaoyu.xmapper.service;
+package com.github.laugh.xmapper.service;
 
-import com.gaoyu.xmapper.entity.User;
-import com.gaoyu.xmapper.mapper.UserMapper;
+import com.github.laugh.xmapper.entity.User;
+import com.github.laugh.xmapper.mapper.UserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

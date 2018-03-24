@@ -1,6 +1,6 @@
-package com.gaoyu.xmapper.service;
+package com.github.laugh.xmapper.service;
 
-import com.gaoyu.xmapper.entity.User;
+import com.github.laugh.xmapper.entity.User;
 import com.github.springtestdbunit.annotation.DatabaseOperation;
 import com.github.springtestdbunit.annotation.DatabaseSetup;
 import com.github.springtestdbunit.annotation.ExpectedDatabase;
@@ -12,8 +12,6 @@ import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
-
-import static org.junit.Assert.*;
 
 /**
  * @author yu.gao 2018-03-24 下午4:06

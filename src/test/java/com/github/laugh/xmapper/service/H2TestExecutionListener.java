@@ -1,4 +1,4 @@
-package com.gaoyu.xmapper.service;
+package com.github.laugh.xmapper.service;
 
 import org.springframework.test.context.TestContext;
 

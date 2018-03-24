@@ -1,4 +1,4 @@
-package com.gaoyu.xmapper.entity;
+package com.github.laugh.xmapper.entity;
 
 import lombok.*;
 

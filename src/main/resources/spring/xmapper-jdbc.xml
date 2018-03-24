@@ -44,14 +44,13 @@
 	<!-- mybatis基础配置 -->
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="master"/>
-		<property name="typeHandlersPackage" value="com.caocao.billing.common.mybatis.type" />
 	</bean>
 
 	<!-- DAO接口所在包名，Spring会自动查找其下的类 -->
 	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-		<property name="basePackage" value="com.gaoyu.xmapper.mapper"/>
+		<property name="basePackage" value="com.github.laugh.xmapper.mapper"/>
 		<property name="sqlSessionFactoryBeanName" value="sqlSessionFactory" />
-		<property name="annotationClass" value="com.gaoyu.xmapper.mybatis.MapperExtend" />
+		<property name="annotationClass" value="com.github.laugh.xmapper.mybatis.MapperExtend" />
 	</bean>
 
 	<bean id="transactionManager"

@@ -1,4 +1,4 @@
-package com.gaoyu.xmapper.service;
+package com.github.laugh.xmapper.service;
 
 import com.alibaba.druid.pool.DruidDataSource;
 import com.github.springtestdbunit.DbUnitTestExecutionListener;

@@ -1,10 +1,10 @@
-package com.gaoyu.xmapper.mapper;
+package com.github.laugh.xmapper.mapper;
 
-import com.gaoyu.xmapper.entity.User;
-import com.gaoyu.xmapper.mybatis.MapperExtend;
-import com.gaoyu.xmapper.mybatis.SelectInLangDriver;
-import com.gaoyu.xmapper.mybatis.SelectLangDriver;
-import com.gaoyu.xmapper.mybatis.UpdateLangDriver;
+import com.github.laugh.xmapper.entity.User;
+import com.github.laugh.xmapper.mybatis.MapperExtend;
+import com.github.laugh.xmapper.mybatis.SelectInLangDriver;
+import com.github.laugh.xmapper.mybatis.SelectLangDriver;
+import com.github.laugh.xmapper.mybatis.UpdateLangDriver;
 import org.apache.ibatis.annotations.Lang;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
