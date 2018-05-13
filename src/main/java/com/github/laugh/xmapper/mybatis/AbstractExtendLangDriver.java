@@ -53,7 +53,9 @@ public abstract class AbstractExtendLangDriver extends XMLLanguageDriver impleme
         if(resultMapMatcher.find()) {
             StringBuilder filedString = new StringBuilder();
             for (Field field : FieldUtils.getAllFields(model)) {
-                filedString.append(CaseFormat.LOWER_CAMEL.to(CaseFormat.LOWER_UNDERSCORE, field.getName())).append(" as ").append(field.getName()).append(",");
+                if (!field.isAnnotationPresent(Invisible.class)) {
+                    filedString.append(CaseFormat.LOWER_CAMEL.to(CaseFormat.LOWER_UNDERSCORE, field.getName())).append(" as ").append(field.getName()).append(",");
+                }
             }
             filedString.deleteCharAt(filedString.lastIndexOf(","));
             script = resultMapMatcher.replaceAll(filedString.toString());

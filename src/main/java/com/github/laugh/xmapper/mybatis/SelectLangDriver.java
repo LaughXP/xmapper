@@ -32,10 +32,11 @@ public class SelectLangDriver extends AbstractExtendLangDriver {
                             CaseFormat.LOWER_CAMEL.to(CaseFormat.LOWER_UNDERSCORE, field.getName())));
                 }
             }
-            sb.append("</where> order by id DESC ");
+            sb.append("</where>");
             script = modelMatcher.replaceAll(sb.toString());
         }
         script = "<script>" + script + "</script>";
+        System.out.println(script);
         return script;
     }
 }

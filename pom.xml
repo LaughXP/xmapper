@@ -37,9 +37,15 @@
         <java_source_version>1.8</java_source_version>
         <java_target_version>1.8</java_target_version>
         <file_encoding>UTF-8</file_encoding>
+        <mybatis.pagehelper.version>5.1.4</mybatis.pagehelper.version>
     </properties>
 
     <dependencies>
+        <dependency>
+            <groupId>com.github.pagehelper</groupId>
+            <artifactId>pagehelper</artifactId>
+            <version>${mybatis.pagehelper.version}</version>
+        </dependency>
 
         <dependency>
             <groupId>org.springframework</groupId>

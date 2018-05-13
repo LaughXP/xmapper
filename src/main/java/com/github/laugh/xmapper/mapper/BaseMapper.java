@@ -4,15 +4,14 @@ import com.github.laugh.xmapper.mybatis.InsertBatchLangDriver;
 import com.github.laugh.xmapper.mybatis.InsertLangDriver;
 import com.github.laugh.xmapper.mybatis.SelectLangDriver;
 import com.github.laugh.xmapper.mybatis.UpdateLangDriver;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Lang;
-import org.apache.ibatis.annotations.Select;
-import org.apache.ibatis.annotations.Update;
+import org.apache.ibatis.annotations.*;
 
 import java.util.List;
 
 /**
  * @author gaoyu
+ *
+ * 分页查询推荐您使用PageHelper
  */
 public interface BaseMapper<T> {
 
@@ -55,5 +54,4 @@ public interface BaseMapper<T> {
     @Update("update #table #field where id = #{id}")
     @Lang(UpdateLangDriver.class)
     int updateByIdSelective(T record);
-
 }

@@ -1,8 +1,10 @@
 package com.github.laugh.xmapper.service;
 
 import com.github.laugh.xmapper.entity.User;
+import com.github.pagehelper.PageInfo;
 import com.github.springtestdbunit.annotation.DatabaseOperation;
 import com.github.springtestdbunit.annotation.DatabaseSetup;
+import com.github.springtestdbunit.annotation.DatabaseTearDown;
 import com.github.springtestdbunit.annotation.ExpectedDatabase;
 import com.github.springtestdbunit.assertion.DatabaseAssertionMode;
 import com.google.common.collect.ImmutableList;
@@ -16,6 +18,7 @@ import java.util.List;
 /**
  * @author yu.gao 2018-03-24 下午4:06
  */
+@DatabaseTearDown(type = DatabaseOperation.DELETE_ALL)
 public class UserServiceTest extends H2TestExecutionListener {
 
     @Autowired
@@ -81,5 +84,14 @@ public class UserServiceTest extends H2TestExecutionListener {
     public void selectByNameAndAge() {
         User user = userService.selectByNameAndAge("小明",18);
         compareAndPrintSkip(User.builder().userNo(124L).userName("小明").age(18).build(), user);
+    }
+
+    @Test
+    @DatabaseSetup(value = "classpath:user_select_page_sta.xml", connection = BaseTestExecutionListener.DATA_SOURCE, type = DatabaseOperation.CLEAN_INSERT)
+    public void selectPage() {
+        PageInfo<User> page = userService.selectPage(User.builder().age(18).build(), 1, 2);
+        System.out.println(page.getList());
+        page = userService.selectPage(User.builder().age(18).build(), 2, 2);
+        System.out.println(page.getList());
     }
 }

@@ -2,6 +2,8 @@ package com.github.laugh.xmapper.service;
 
 import com.github.laugh.xmapper.entity.User;
 import com.github.laugh.xmapper.mapper.UserMapper;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -47,5 +49,9 @@ public class UserService {
 
     public User selectByNameAndAge(String userName, Integer age) {
         return userMapper.selectByNameAndAge(userName, age);
+    }
+
+    public PageInfo<User> selectPage(User user, Integer page, Integer pageSize) {
+        return PageHelper.startPage(page, pageSize).doSelectPageInfo(() -> userMapper.selectListSelective(user));
     }
 }
